@@ -16,7 +16,6 @@ func TestAddition(t *testing.T) {
 
 func ExampleAdd() {
 	sum := Add(1, 6)
-	if sum != 7 {
-		fmt.Println(sum)
-	}
+	fmt.Println(sum)
+	// Output: 7
 }
