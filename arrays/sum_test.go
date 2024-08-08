@@ -34,10 +34,19 @@ func TestSumAll(t *testing.T) {
 }
 
 func TestSumAllTails(t *testing.T) {
-	got := SumAllTails([]int{1, 2}, []int{0, 9})
-	want := []int{2, 9}
+	t.Run("SumAllTails", func(t *testing.T) {
+		got := SumAllTails([]int{1, 2}, []int{0, 9})
+		want := []int{2, 9}
 
-	if !slices.Equal(got, want) {
-		t.Errorf("got %v != want %v", got, want)
-	}
+		if !slices.Equal(got, want) {
+			t.Errorf("got %v != want %v", got, want)
+		}
+	})
+	t.Run("SumAllTails, argument is empty array", func(t *testing.T) {
+		got := SumAllTails([]int{}, []int{0, 9})
+		want := []int{-1, 9}
+		if !slices.Equal(got, want) {
+			t.Errorf("got %v != want %v", got, want)
+		}
+	})
 }

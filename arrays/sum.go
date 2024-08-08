@@ -17,7 +17,11 @@ func SumAll(sumLists ...[]int) (sum []int) {
 
 func SumAllTails(sumLists ...[]int) (sum []int) {
 	for _, list := range sumLists {
-		sum = append(sum, Sum(list[1:]))
+		if len(list) == 0 {
+			sum = append(sum, 0)
+		} else {
+			sum = append(sum, Sum(list[1:]))
+		}
 	}
 	return
 }
