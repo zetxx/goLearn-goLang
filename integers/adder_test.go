@@ -1,11 +1,11 @@
-package integers
+package main
 
 import (
 	"fmt"
 	"testing"
 )
 
-func TestAddition(t *testing.T) {
+func TestAdd(t *testing.T) {
 	got := Add(1, 2)
 	want := 3
 
