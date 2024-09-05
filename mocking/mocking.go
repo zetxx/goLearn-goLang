@@ -12,6 +12,11 @@ type Sleeper interface {
 }
 type DefSleeper struct{}
 
+type ConfigurableSleeper struct {
+	duration time.Duration
+	Sleep    func(time.Duration)
+}
+
 func (ds DefSleeper) Sleep() {
 	time.Sleep(1 * time.Second)
 }
