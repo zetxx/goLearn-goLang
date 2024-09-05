@@ -23,17 +23,9 @@ func (s *SpySleepOrder) Sleep() {
 	s.Calls = append(s.Calls, "sleep")
 }
 
-type SpyTime struct {
-	durationSlept time.Duration
-}
-
 func (s *SpySleepOrder) Write(p []byte) (n int, err error) {
 	s.Calls = append(s.Calls, "write")
 	return
-}
-
-func (s *SpyTime) Sleep(duration time.Duration) {
-	s.durationSlept = duration
 }
 
 func TestCountdown(t *testing.T) {
@@ -75,13 +67,21 @@ Go!`
 	})
 }
 
+type SpyTime struct {
+	durationSlept time.Duration
+}
+
+func (s *SpyTime) Sleep(duration time.Duration) {
+	s.durationSlept = duration
+}
+
 func TestConfigurableSleeper(t *testing.T) {
 	sleepTime := 5 * time.Second
+
 	spyTime := &SpyTime{}
 	sleeper := ConfigurableSleeper{sleepTime, spyTime.Sleep}
-
 	sleeper.Sleep()
-
+	// z
 	if spyTime.durationSlept != sleepTime {
 		t.Errorf("should have slept for %v but slept for %v", sleepTime, spyTime.durationSlept)
 	}
